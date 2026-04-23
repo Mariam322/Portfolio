@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mariam MSEDDI — Ingénieure DevOps & Full Stack</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --white: #ffffff;
+    --off-white: #f5f8ff;
+    --blue-50: #eef3ff;
+    --blue-100: #dce8ff;
+    --blue-200: #b3ccff;
+    --blue-400: #5b8ef0;
+    --blue-500: #2563eb;
+    --blue-600: #1d4ed8;
+    --blue-700: #1e40af;
+    --blue-900: #0f1f5c;
+    --ink: #0a0f2e;
+    --text: #1e293b;
+    --muted: #64748b;
+    --lighter: #94a3b8;
+    --border: #e2e8f4;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow-sm: 0 1px 8px rgba(37,99,235,0.06);
+    --shadow-md: 0 6px 24px rgba(37,99,235,0.10);
+    --shadow-lg: 0 16px 48px rgba(37,99,235,0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #f5f8ff;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 60px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 16px rgba(37,99,235,0.06);
+  }
+  .nav-logo { font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+  .nav-logo span { color: var(--blue-500); }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--blue-600); }
+  .nav-cta {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 22px;
+    background: var(--blue-500); color: white;
+    border-radius: 50px; text-decoration: none;
+    font-size: 0.875rem; font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+    cursor: pointer;
+  }
+  .nav-cta:hover { background: var(--blue-600); transform: translateY(-1px); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 60px 80px;
+    background: linear-gradient(155deg, #ffffff 0%, #eef3ff 55%, #dce8ff 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -180px; right: -180px;
+    width: 650px; height: 650px;
+    background: radial-gradient(circle, rgba(37,99,235,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-inner {
+    display: grid; grid-template-columns: 1fr 400px;
+    gap: 80px; align-items: center;
+    max-width: 1160px; margin: 0 auto; width: 100%;
+    position: relative; z-index: 1;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px;
+    background: var(--blue-50); border: 1px solid var(--blue-200);
+    border-radius: 50px;
+    font-size: 0.78rem; font-weight: 600; color: var(--blue-600);
+    margin-bottom: 22px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 4.8rem);
+    font-weight: 900; line-height: 1.05;
+    color: var(--ink); margin-bottom: 14px;
+    animation: fadeUp 0.5s 0.1s ease both;
+  }
+  .hero-name .blue { color: var(--blue-500); }
+  .hero-role {
+    font-size: 1.05rem; font-weight: 600; color: var(--blue-600);
+    margin-bottom: 20px;
+    animation: fadeUp 0.5s 0.15s ease both;
+  }
+  .hero-desc {
+    font-size: 0.96rem; line-height: 1.8; color: var(--muted);
+    max-width: 500px; margin-bottom: 34px;
+    animation: fadeUp 0.5s 0.2s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap;
+    animation: fadeUp 0.5s 0.25s ease both;
+  }
+  .btn-blue {
+    display: flex; align-items: center; gap: 9px;
+    padding: 13px 28px;
+    background: var(--blue-500); color: white;
+    border-radius: 50px; text-decoration: none;
+    font-weight: 600; font-size: 0.9rem;
+    box-shadow: 0 4px 20px rgba(37,99,235,0.35);
+    transition: all 0.2s;
+  }
+  .btn-blue:hover { background: var(--blue-600); transform: translateY(-2px); }
+  .btn-ghost {
+    display: flex; align-items: center; gap: 9px;
+    padding: 13px 28px;
+    background: white; color: var(--blue-600);
+    border: 1.5px solid var(--blue-200);
+    border-radius: 50px; text-decoration: none;
+    font-weight: 600; font-size: 0.9rem;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: var(--blue-500); background: var(--blue-50); transform: translateY(-2px); }
+
+  .hero-socials { display: flex; gap: 12px; margin-top: 30px; animation: fadeUp 0.5s 0.3s ease both; }
+  .soc-link {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    background: white; border: 1px solid var(--border);
+    border-radius: 50%; color: var(--muted);
+    text-decoration: none; font-size: 0.95rem;
+    transition: all 0.2s; box-shadow: var(--shadow-sm);
+  }
+  .soc-link:hover { background: var(--blue-500); border-color: var(--blue-500); color: white; transform: translateY(-3px); }
+
+  .photo-side { animation: fadeUp 0.5s 0.15s ease both; }
+  .photo-box {
+    background: white; border-radius: 24px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden; aspect-ratio: 4/5; position: relative;
+  }
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(145deg, var(--blue-50), var(--blue-100));
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+  }
+  .photo-placeholder i { font-size: 80px; color: var(--blue-200); }
+  .photo-placeholder p { font-size: 0.8rem; color: var(--lighter); }
+  .chip {
+    position: absolute; background: white; border: 1px solid var(--border);
+    border-radius: 14px; padding: 12px 16px;
+    box-shadow: var(--shadow-md);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .chip.c1 { bottom: -12px; left: -24px; }
+  .chip.c2 { top: 24px; right: -24px; }
+  .chip-icon { width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+  .chip.c1 .chip-icon { background: var(--blue-50); color: var(--blue-500); }
+  .chip.c2 .chip-icon { background: #f0fdf4; color: #16a34a; }
+  .chip-num { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); line-height: 1; }
+  .chip-lbl { font-size: 0.7rem; color: var(--muted); }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 60px; }
+  section { padding: 90px 0; }
+
+  .sec-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--blue-500); margin-bottom: 10px; }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900; color: var(--ink); }
+  .sec-head { margin-bottom: 48px; }
+
+  .skills-bg { background: white; }
+  .skills-inner { max-width: 1160px; margin: 0 auto; padding: 80px 60px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+  .sk-card {
+    padding: 26px; border-radius: var(--radius);
+    border: 1px solid var(--border); background: var(--off-white);
+    transition: all 0.25s;
+  }
+  .sk-card:hover { border-color: var(--blue-400); box-shadow: var(--shadow-md); transform: translateY(-3px); background: white; }
+  .sk-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 14px; background: var(--blue-50); color: var(--blue-500); }
+  .sk-label { font-size: 0.72rem; font-weight: 700; color: var(--lighter); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 12px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag { padding: 4px 11px; border-radius: 50px; background: white; border: 1px solid var(--border); font-size: 0.775rem; font-weight: 500; color: var(--text); transition: all 0.2s; }
+  .sk-card:hover .tag { border-color: var(--blue-200); color: var(--blue-700); }
+
+  .exp-timeline { display: flex; flex-direction: column; }
+  .exp-row { display: grid; grid-template-columns: 190px 1fr; position: relative; padding-bottom: 44px; }
+  .exp-row:last-child { padding-bottom: 0; }
+  .exp-left { padding-top: 4px; padding-right: 24px; text-align: right; }
+  .exp-period { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--lighter); line-height: 1.6; }
+  .exp-co { font-size: 0.8rem; font-weight: 700; color: var(--blue-500); margin-top: 4px; }
+  .exp-right { padding-left: 32px; border-left: 2px solid var(--blue-100); position: relative; }
+  .exp-dot { position: absolute; left: -7px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: var(--blue-500); border: 3px solid #f5f8ff; box-shadow: 0 0 0 2px var(--blue-200); }
+  .exp-row:first-child .exp-dot { background: #22c55e; box-shadow: 0 0 0 2px #bbf7d0; }
+  .exp-role { font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+  .exp-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .exp-list li { font-size: 0.875rem; color: var(--muted); line-height: 1.65; padding-left: 15px; position: relative; }
+  .exp-list li::before { content: '▸'; position: absolute; left: 0; color: var(--blue-400); font-size: 0.7rem; top: 3px; }
+  .exp-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .pill { padding: 3px 11px; border-radius: 50px; background: var(--blue-50); color: var(--blue-700); border: 1px solid var(--blue-200); font-size: 0.72rem; font-weight: 700; font-family: 'Space Mono', monospace; }
+
+  .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+  .edu-card { padding: 32px; border-radius: var(--radius); background: white; border: 1px solid var(--border); box-shadow: var(--shadow-sm); border-top: 4px solid var(--blue-500); transition: all 0.25s; }
+  .edu-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .edu-yr { font-family: 'Space Mono', monospace; font-size: 0.72rem; color: var(--lighter); margin-bottom: 10px; }
+  .edu-deg { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
+  .edu-school { font-size: 0.85rem; color: var(--muted); }
+
+  .certs-bg { background: white; }
+  .certs-inner { max-width: 1160px; margin: 0 auto; padding: 80px 60px; }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .cert-card { padding: 20px; border-radius: var(--radius-sm); background: var(--off-white); border: 1px solid var(--border); display: flex; align-items: center; gap: 14px; transition: all 0.25s; }
+  .cert-card:hover { background: white; border-color: var(--blue-200); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .cert-ico { width: 42px; height: 42px; border-radius: 12px; flex-shrink: 0; background: var(--blue-50); color: var(--blue-500); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .cert-name { font-size: 0.875rem; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .cert-org { font-size: 0.75rem; color: var(--lighter); }
+
+  .dl-banner {
+    background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
+    border-radius: 24px;
+    margin: 0 auto 0;
+    max-width: 1160px;
+    padding: 56px 60px;
+    display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;
+    position: relative; overflow: hidden;
+  }
+  .dl-banner::before { content: ''; position: absolute; top: -80px; right: -80px; width: 280px; height: 280px; background: rgba(255,255,255,0.06); border-radius: 50%; }
+  .dl-banner h3 { font-family: 'Playfair Display', serif; font-size: 1.75rem; color: white; margin-bottom: 6px; }
+  .dl-banner p { color: rgba(255,255,255,0.7); font-size: 0.92rem; }
+  .btn-dl { display: flex; align-items: center; gap: 10px; padding: 14px 32px; background: white; color: var(--blue-600); border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem; box-shadow: 0 6px 24px rgba(0,0,0,0.18); transition: all 0.25s; flex-shrink: 0; position: relative; z-index: 1; cursor: pointer; border: none; font-family: inherit; }
+  .btn-dl:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 32px rgba(0,0,0,0.22); }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .contact-sub { font-size: 0.95rem; color: var(--muted); line-height: 1.75; margin-bottom: 32px; }
+  .c-links { display: flex; flex-direction: column; gap: 12px; }
+  .c-link { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--text); padding: 14px 18px; background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); transition: all 0.2s; box-shadow: var(--shadow-sm); }
+  .c-link:hover { border-color: var(--blue-400); box-shadow: var(--shadow-md); transform: translateX(4px); }
+  .c-link-ico { width: 38px; height: 38px; border-radius: 10px; background: var(--blue-50); color: var(--blue-500); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .c-link-text { font-size: 0.875rem; font-weight: 500; }
+
+  .info-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-sm); }
+  .info-row { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .info-lbl { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--lighter); margin-bottom: 5px; }
+  .info-val { font-size: 0.9rem; color: var(--text); font-weight: 500; }
+  .lang-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+  .lang-pill { padding: 5px 14px; border-radius: 50px; background: var(--blue-50); color: var(--blue-700); border: 1px solid var(--blue-200); font-size: 0.8rem; font-weight: 600; }
+  .avail-badge { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; font-size: 0.84rem; font-weight: 600; color: #16a34a; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 50px; padding: 8px 16px; width: fit-content; }
+  .avail-dot2 { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: blink 2s infinite; }
+
+  footer { text-align: center; padding: 32px 60px; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--lighter); margin-top: 80px; }
+  footer span { color: var(--blue-500); font-weight: 600; }
+
+  .rev { opacity: 0; transform: translateY(24px); transition: opacity 0.65s, transform 0.65s; }
+  .rev.on { opacity: 1; transform: translateY(0); }
+
+  /* Message si fichier manquant (optionnel) */
+  .toast-msg {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+    background: #1e293b; color: white; padding: 12px 24px;
+    border-radius: 50px; font-size: 0.85rem; z-index: 1000;
+    backdrop-filter: blur(12px); background: rgba(0,0,0,0.8);
+    pointer-events: none; opacity: 0; transition: opacity 0.2s;
+  }
+  .toast-msg.show { opacity: 1; }
+
+  @media (max-width: 900px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 90px 20px 60px; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .photo-side { display: none; }
+    .wrap { padding: 0 20px; }
+    section { padding: 60px 0; }
+    .skills-inner, .certs-inner { padding: 60px 20px; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .dl-banner { margin: 0 20px; padding: 40px 24px; flex-direction: column; }
+    .exp-row { grid-template-columns: 1fr; }
+    .exp-left { text-align: left; padding-right: 0; padding-bottom: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="toastMsg" class="toast-msg"></div>
+
+<nav>
+  <div class="nav-logo">Mariam <span>MSEDDI</span></div>
+  <ul class="nav-links">
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#education">Formation</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="downloadCV(event)">
+    <i class="fas fa-download"></i> Télécharger CV
+  </button>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge"><span class="dot"></span>Disponible pour de nouvelles opportunités</div>
+      <h1 class="hero-name">Mariam<br><span class="blue">MSEDDI</span></h1>
+      <p class="hero-role">Ingénieure DevOps &amp; Développeuse Full Stack</p>
+      <p class="hero-desc">Passionnée par le développement de solutions logicielles innovantes et performantes. Spécialisée en architectures microservices, pipelines CI/CD et systèmes distribués à haute disponibilité.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-blue"><i class="fas fa-paper-plane"></i> Me contacter</a>
+        <button class="btn-ghost" onclick="downloadCV(event)"><i class="fas fa-file-pdf"></i> Télécharger le CV</button>
+      </div>
+      <div class="hero-socials">
+        <a href="mailto:mseddimariam41@gmail.com" class="soc-link" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/mseddi-mariam/" target="_blank" class="soc-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/Mariam322" target="_blank" class="soc-link" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="tel:+21650856616" class="soc-link" title="Téléphone"><i class="fas fa-phone"></i></a>
+      </div>
+    </div>
+    <div class="photo-side">
+      <div style="position:relative;">
+        <div class="photo-box">
+          <div class="photo-placeholder">
+            <i class="fas fa-user-circle"></i>
+            <p>Photo professionnelle</p>
+          </div>
+        </div>
+        <div class="chip c1">
+          <div class="chip-icon"><i class="fas fa-code-branch"></i></div>
+          <div><div class="chip-num">5+</div><div class="chip-lbl">Expériences pro</div></div>
+        </div>
+        <div class="chip c2">
+          <div class="chip-icon"><i class="fas fa-certificate"></i></div>
+          <div><div class="chip-num">6</div><div class="chip-lbl">Certifications</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="skills-bg">
+  <div class="skills-inner rev" id="skills">
+    <div class="sec-head">
+      <div class="sec-tag">// 01 — Compétences</div>
+      <h2 class="sec-title">Stack Technique</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="sk-card"><div class="sk-icon"><i class="fas fa-server"></i></div><div class="sk-label">DevOps &amp; CI/CD</div><div class="tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Jenkins</span><span class="tag">Git</span><span class="tag">Cloud OVH</span><span class="tag">Bitbucket</span></div></div>
+      <div class="sk-card"><div class="sk-icon"><i class="fas fa-layer-group"></i></div><div class="sk-label">Frameworks Web</div><div class="tags"><span class="tag">Angular</span><span class="tag">Spring Boot</span><span class="tag">ReactJS</span><span class="tag">NodeJS</span><span class="tag">Vue.js</span><span class="tag">Laravel</span></div></div>
+      <div class="sk-card"><div class="sk-icon"><i class="fas fa-database"></i></div><div class="sk-label">Bases de Données</div><div class="tags"><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">SQL Server</span><span class="tag">Data Warehouse</span></div></div>
+      <div class="sk-card"><div class="sk-icon"><i class="fas fa-brain"></i></div><div class="sk-label">Data Science &amp; IA</div><div class="tags"><span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">Power BI</span><span class="tag">SSIS</span></div></div>
+      <div class="sk-card"><div class="sk-icon"><i class="fas fa-network-wired"></i></div><div class="sk-label">Architecture</div><div class="tags"><span class="tag">Microservices</span><span class="tag">Spring Cloud</span><span class="tag">Kafka</span><span class="tag">Keycloak</span><span class="tag">REST API</span></div></div>
+      <div class="sk-card"><div class="sk-icon"><i class="fas fa-code"></i></div><div class="sk-label">Langages &amp; Mobile</div><div class="tags"><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">Flutter</span><span class="tag">Shell</span><span class="tag">UML</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+<section id="experience" class="rev">
+  <div class="sec-head">
+    <div class="sec-tag">// 02 — Expérience</div>
+    <h2 class="sec-title">Parcours Professionnel</h2>
+  </div>
+  <div class="exp-timeline">
+    <div class="exp-row">
+      <div class="exp-left"><div class="exp-period">Présent</div><div class="exp-co">Systeo Digital</div></div>
+      <div class="exp-right">
+        <div class="exp-dot"></div>
+        <div class="exp-role">Ingénieure Infrastructure &amp; DevOps</div>
+        <ul class="exp-list">
+          <li>Administration et optimisation des infrastructures cloud et serveurs</li>
+          <li>Mise en place et gestion de pipelines CI/CD pour les projets internes et clients</li>
+          <li>Supervision des services distribués et déploiement d'applications sécurisées</li>
+        </ul>
+        <div class="exp-pills"><span class="pill">Docker</span><span class="pill">Kubernetes</span><span class="pill">Jenkins</span><span class="pill">Linux</span><span class="pill">Cloud OVH</span></div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-left"><div class="exp-period">02/2025 – 07/2025</div><div class="exp-co">Systeo Digital</div></div>
+      <div class="exp-right">
+        <div class="exp-dot"></div>
+        <div class="exp-role">Développeuse Systèmes Distribués</div>
+        <ul class="exp-list">
+          <li>Conception d'une architecture microservices avec services REST sécurisés via Keycloak</li>
+          <li>Communication inter-services avec OpenFeign et Kafka, documentation Swagger</li>
+          <li>Automatisation du déploiement via CI/CD avec Docker, GitHub et Jenkins sur VPS Linux</li>
+        </ul>
+        <div class="exp-pills"><span class="pill">Angular</span><span class="pill">Spring Boot</span><span class="pill">Kafka</span><span class="pill">Keycloak</span><span class="pill">Docker</span></div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-left"><div class="exp-period">07/2024 – 09/2024</div><div class="exp-co">Acteol</div></div>
+      <div class="exp-right">
+        <div class="exp-dot"></div>
+        <div class="exp-role">Développeuse Systèmes Analytiques</div>
+        <ul class="exp-list">
+          <li>Conception d'un système analytique pour campagnes marketing avec flux ETL</li>
+          <li>Modélisation multidimensionnelle et rapports interactifs Power BI</li>
+          <li>Application web pour personnalisation de tableaux de bord</li>
+        </ul>
+        <div class="exp-pills"><span class="pill">Power BI</span><span class="pill">Data Warehouse</span><span class="pill">SQL Server</span><span class="pill">SSIS</span></div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-left"><div class="exp-period">08/2023 – 09/2023</div><div class="exp-co">For Right Solutions</div></div>
+      <div class="exp-right">
+        <div class="exp-dot"></div>
+        <div class="exp-role">Développeuse Applications Web</div>
+        <ul class="exp-list">
+          <li>Application web automatisant la collecte et le stockage sécurisé des données d'e-mails clients</li>
+          <li>Interface de gestion pour l'analyse de satisfaction client</li>
+        </ul>
+        <div class="exp-pills"><span class="pill">Angular</span><span class="pill">Spring Boot</span><span class="pill">MongoDB</span><span class="pill">Spring Security</span></div>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-left"><div class="exp-period">02/2022 – 05/2022</div><div class="exp-co">DKSoft</div></div>
+      <div class="exp-right">
+        <div class="exp-dot"></div>
+        <div class="exp-role">Développeuse Bilans Thermiques</div>
+        <ul class="exp-list">
+          <li>Application web de calcul du bilan thermique des chambres froides et tunnels de congélation</li>
+          <li>Intégration des formules de charge frigorifique selon les caractéristiques techniques</li>
+        </ul>
+        <div class="exp-pills"><span class="pill">Angular</span><span class="pill">Spring Boot</span><span class="pill">MySQL</span><span class="pill">Git</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="wrap">
+<section id="education" class="rev">
+  <div class="sec-head">
+    <div class="sec-tag">// 03 — Formation</div>
+    <h2 class="sec-title">Parcours Académique</h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-yr">09/2022 – 06/2025 · Sfax, Tunisie</div>
+      <div class="edu-deg">Génie Logiciel et Informatique Décisionnelle</div>
+      <div class="edu-school">Institut International de Technologie (IIT)</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-yr">2019 – 2022 · Sfax, Tunisie</div>
+      <div class="edu-deg">Licence Appliquée en Développement des Systèmes Informatiques</div>
+      <div class="edu-school">Institut Supérieur des Études Technologiques de Sfax (ISET)</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="certs-bg">
+  <div class="certs-inner rev" id="certifications">
+    <div class="sec-head">
+      <div class="sec-tag">// 04 — Certifications</div>
+      <h2 class="sec-title">Certifications &amp; Accréditations</h2>
+    </div>
+    <div class="certs-grid">
+      <div class="cert-card"><div class="cert-ico"><i class="fas fa-bug"></i></div><div><div class="cert-name">ISTQB</div><div class="cert-org">Int. Software Testing Qualifications Board · 2024</div></div></div>
+      <div class="cert-card"><div class="cert-ico"><i class="fas fa-robot"></i></div><div><div class="cert-name">Generative AI with Diffusion Models</div><div class="cert-org">NVIDIA · 2024</div></div></div>
+      <div class="cert-card"><div class="cert-ico"><i class="fas fa-microchip"></i></div><div><div class="cert-name">Intelligence Artificielle</div><div class="cert-org">Information Technology Specialist · 2024</div></div></div>
+      <div class="cert-card"><div class="cert-ico"><i class="fas fa-network-wired"></i></div><div><div class="cert-name">Cisco CCNA — Intro to Networks</div><div class="cert-org">Cisco · 2023</div></div></div>
+      <div class="cert-card"><div class="cert-ico"><i class="fas fa-database"></i></div><div><div class="cert-name">Big Data Engineer Certificate</div><div class="cert-org">IBM · 2024</div></div></div>
+      <div class="cert-card"><div class="cert-ico"><i class="fas fa-people-group"></i></div><div><div class="cert-name">Scrum Fundamentals Certified</div><div class="cert-org">ScrumStudy · 2023</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:1280px;margin:80px auto 0;padding:0 60px;">
+  <div class="dl-banner rev">
+    <div>
+      <h3>Intéressé(e) par mon profil ?</h3>
+      <p>Téléchargez mon CV complet en PDF pour tous les détails</p>
+    </div>
+    <button class="btn-dl" onclick="downloadCV(event)">
+      <i class="fas fa-file-pdf"></i> Télécharger le CV (PDF) <i class="fas fa-arrow-down"></i>
+    </button>
+  </div>
+</div>
+
+<div class="wrap">
+<section id="contact" class="rev">
+  <div class="sec-head">
+    <div class="sec-tag">// 05 — Contact</div>
+    <h2 class="sec-title">Restons en Contact</h2>
+  </div>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-sub">Je suis ouverte aux opportunités en DevOps, développement full-stack et architecture de systèmes distribués. N'hésitez pas à me contacter !</p>
+      <div class="c-links">
+        <a href="mailto:mseddimariam41@gmail.com" class="c-link"><div class="c-link-ico"><i class="fas fa-envelope"></i></div><span class="c-link-text">mseddimariam41@gmail.com</span></a>
+        <a href="tel:+21650856616" class="c-link"><div class="c-link-ico"><i class="fas fa-phone"></i></div><span class="c-link-text">+216 50 856 616</span></a>
+        <a href="https://www.linkedin.com/in/mseddi-mariam/" target="_blank" class="c-link"><div class="c-link-ico"><i class="fab fa-linkedin-in"></i></div><span class="c-link-text">linkedin.com/in/mseddi-mariam</span></a>
+        <a href="https://github.com/Mariam322" target="_blank" class="c-link"><div class="c-link-ico"><i class="fab fa-github"></i></div><span class="c-link-text">github.com/Mariam322</span></a>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="avail-badge"><span class="avail-dot2"></span>Disponible pour de nouvelles opportunités</div>
+      <div class="info-row"><div class="info-lbl">Localisation</div><div class="info-val">Sfax, Tunisie</div></div>
+      <div class="info-row"><div class="info-lbl">Spécialisation</div><div class="info-val">DevOps · Full Stack · Systèmes Distribués</div></div>
+      <div class="info-row"><div class="info-lbl">Expérience</div><div class="info-val">3+ ans d'expérience professionnelle</div></div>
+      <div class="info-row">
+        <div class="info-lbl">Langues</div>
+        <div class="lang-pills"><span class="lang-pill">🇹🇳 Arabe</span><span class="lang-pill">🇫🇷 Français</span><span class="lang-pill">🇬🇧 Anglais</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>Conçu avec soin · <span>Mariam MSEDDI</span> · 2025 · Sfax, Tunisie</footer>
+
+<script>
+// ============================================================
+// TÉLÉCHARGEMENT DU CV VERS UN FICHIER PDF QUE VOUS DEVEZ PLACER
+// ============================================================
+// IMPORTANT : 
+// 1. Renommez votre vrai fichier CV en "Mariam_MSEDDI_CV.pdf"
+// 2. Placez-le dans le MÊME DOSSIER que ce fichier HTML
+// 3. Si vous voulez un autre nom ou chemin, modifiez la variable ci-dessous
+// ============================================================
+
+const CV_FILE_PATH = "Mariam_MSEDDI_CV.pdf";  // <--- CHANGEZ ICI si besoin
+
+function downloadCV(event) {
+  if (event) event.preventDefault();
+  
+  // Créer un lien temporaire pour forcer le téléchargement
+  const link = document.createElement('a');
+  link.href = CV_FILE_PATH;
+  link.download = "Mariam_MSEDDI_Curriculum_Vitae.pdf"; // nom suggéré lors du téléchargement
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  
+  // Afficher un message de confirmation (optionnel)
+  const toast = document.getElementById('toastMsg');
+  toast.innerText = "Téléchargement du CV lancé !";
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2000);
+  
+  return false;
+}
+
+// Intersection observer pour les animations
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }), { threshold: 0.08 });
+document.querySelectorAll('.rev').forEach(el => obs.observe(el));
+</script>
+
+<!-- 
+  INSTRUCTIONS POUR METTRE VOTRE VRAI CV EN LIGNE :
+  
+  1. Prenez votre fichier CV (PDF) et renommez-le "Mariam_MSEDDI_CV.pdf"
+  2. Copiez ce fichier dans le MÊME DOSSIER que ce fichier HTML
+  3. Téléversez les deux fichiers sur votre serveur/hébergement (GitHub Pages, Netlify, OVH, etc.)
+  
+  Si votre CV a un autre nom, modifiez la constante CV_FILE_PATH ligne 730.
+  Exemple : const CV_FILE_PATH = "documents/mon-cv-2025.pdf";
+  
+  Le téléchargement fonctionnera parfaitement une fois le fichier présent.
+-->
+</body>
+</html>
